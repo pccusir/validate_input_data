@@ -72,7 +72,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
-    if msg[0]=='!':
+    if msg[0]=='-':
         try:
             QA_answer = QA_response(msg)
             print(QA_answer)
