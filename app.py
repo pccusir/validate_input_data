@@ -75,7 +75,8 @@ def handle_message(event):
     try:
         QA_answer = QA_response(msg)
         print(QA_answer)
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(QA_answer))
+        if QA_answer!='No good match found in KB':
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(QA_answer))
     except:
         print(traceback.format_exc())
         line_bot_api.reply_message(event.reply_token, TextSendMessage('QA Error'))
