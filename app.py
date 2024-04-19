@@ -45,12 +45,12 @@ def QA_response(text):
     client = QuestionAnsweringClient(endpoint, credential)
     with client:
         question=text
-        answer = client.get_answers(
+        output = client.get_answers(
             question = question,
             project_name=knowledge_base_project,
             deployment_name=deployment
         )
-    return answer
+    return output.answers[0].answer
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
