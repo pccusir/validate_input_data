@@ -50,7 +50,7 @@ def QA_response(text):
             project_name=knowledge_base_project,
             deployment_name=deployment
         )
-    return output.answers[0].answer
+    return output.answers#[0].answer
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
