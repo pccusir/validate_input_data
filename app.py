@@ -77,7 +77,7 @@ def handle_message(event):
     if msg[0]=='-':
         try:
             t=uid+':'+msg
-            line_bot_api.push_message(user_id, TextSendMessage(t))
+            line_bot_api.push_message(user_id, TextSendMessage(text=t))
             QA_answer = QA_response(msg)
             print(QA_answer)
             if QA_answer!='No good match found in KB':
