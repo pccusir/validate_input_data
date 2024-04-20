@@ -74,9 +74,10 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
-    line_bot_api.push_message(user_id, TextSendMessage(text=uid+':'+msg))
     if msg[0]=='-':
         try:
+            t=uid+':'+msg
+            line_bot_api.push_message(user_id, TextSendMessage(t))
             QA_answer = QA_response(msg)
             print(QA_answer)
             if QA_answer!='No good match found in KB':
