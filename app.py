@@ -33,6 +33,8 @@ credential = AzureKeyCredential(os.getenv('AZURE_KEY'))
 knowledge_base_project = os.getenv('PROJECT')
 deployment = 'production'
 
+user_id = os.getenv('USER_ID')
+
 #def GPT_response(text):
     # 接收回應
     #response = openai.Completion.create(model="gpt-3.5-turbo-instruct", prompt=text, temperature=0.5, max_tokens=500)
@@ -72,6 +74,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
+    line_bot_api.push_message(user_id, TextSendMessage(text=uid+':'+msg))
     if msg[0]=='-':
         try:
             QA_answer = QA_response(msg)
