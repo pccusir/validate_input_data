@@ -14,7 +14,7 @@ def handle_form():
     gender = request.form.get('gender')
     email = request.form.get('email')
 
-    # Validate ID number (assuming it's numeric)
+    # Validate ID number (assuming 台灣ID)
     if len(id_number)!=10:
         return "身分證號碼應該為10碼", 400
 
