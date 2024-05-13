@@ -3,7 +3,7 @@ import re
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/')#首頁
 def form():
     return render_template('input_data.html')
 
@@ -15,13 +15,15 @@ def handle_form():
     email = request.form.get('email')
 
     # Validate ID number (assuming 台灣ID)
-    if len(id_number)!=10:
+    if len(id_number)!=10:                        #1. 確認身份證號碼長度是否為10。
         return "身分證號碼應該為10碼", 400
-    if not id_number[0].isalpha():
-        return "第一個字元應該為英文字母碼", 400        
-    if len(id_number)!=10:
-        return "身分證號碼應該為10碼", 400
-    if len(id_number)!=10:
+    if not id_number[0].isalpha():                #2. 確認第一個字元是否為英文字母
+        return "第一個字元應該為英文字母碼", 400
+        
+    if not id_number[1:].isdigit():               #3. 確認後九個字元是否為數字
+        return "身分證號碼後九碼應為數字", 400
+        
+    if len(id_number)!=10:                        #4. 將第一個英文字母轉換為對應的數字（A為10，B為11，C為12，...，Z為33）
         return "身分證號碼應該為10碼", 400
     if len(id_number)!=10:
         return "身分證號碼應該為10碼", 400        
